@@ -1,5 +1,7 @@
 package org.wecancodeit.artistandalbums;
 
-public class SongCommentRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface SongCommentRepository extends CrudRepository<SongComment, Long> {
 
 }

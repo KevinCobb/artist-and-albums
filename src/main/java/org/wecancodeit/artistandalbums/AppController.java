@@ -19,17 +19,17 @@ public class AppController {
 	SongRepository songRepo;
 	
 	@Autowired
-	SongCommentRepository songCommentrepo;
+	SongCommentRepository songCommentRepo;
 	
 	@Autowired 
-	AlbumCommentRepository albumcommentrepo;
+	AlbumCommentRepository albumCommentRepo;
 	
 	@RequestMapping("/")
 	public String home() {
-		return "redirect:/Artist";
+		return "redirect:/artists";
 	}
 	
-	@RequestMapping("/Artist")
+	@RequestMapping("/artists")
 	public String getArtists(Model model) {
 		model.addAttribute("artists", artistRepo.findAll());
 		return "artists";

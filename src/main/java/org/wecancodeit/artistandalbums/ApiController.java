@@ -35,7 +35,7 @@ public class ApiController {
 		public Collection<Artist> getArtist() {
 			return (Collection<Artist>) artistRepo.findAll();
 		}
-		@RequestMapping("/Artists/{id}/albums")
+		@RequestMapping("/artists/{id}/albums")
 		public Collection<Album> getAlbums(@PathVariable(name = "id") Long id) {
 			return (Collection<Album>) artistRepo.findById(id).getAlbums();
 		}
@@ -46,5 +46,7 @@ public class ApiController {
 			albumCommentRepo.delete(id);
 			return artistRepo.findById(id).getAlbumComments();
 		}
+		
+//		@RequestMapping(value = "/")
 
 }

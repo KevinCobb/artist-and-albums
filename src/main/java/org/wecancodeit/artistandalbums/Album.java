@@ -5,30 +5,35 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 @Entity
 public class Album {
 	@Id
 	@GeneratedValue
-	
 	private Long id;
+	
 	private String albumName;
 	private String albumReleaseDate;
 	private String albumSong;
 	private String albumGenre;
 	private String albumCoverImg;
-	private String Artist;
+	
 	
 	@OneToMany(mappedBy="album")
 	private Collection<Song> songs;
 	@OneToMany(mappedBy="album")
 	private Collection<AlbumComment> albumComments;
 
+	@ManyToOne
+	private Artist artist;
+	
+	
 	public Album() {
 	}
 	
-	public Album(String albumname, String albumReleaseDate, String albumSong, String albumGenre, String coverImg, Artist artist) {
-		this.albumName = albumname;
+	public Album(String albumName, String albumReleaseDate, String albumSong, String albumGenre, String coverImg, Artist artist) {
+		this.albumName = albumName;
 		this.albumReleaseDate = albumReleaseDate;
 		this.albumSong = albumSong;
 		this.albumGenre = albumGenre;
@@ -58,7 +63,7 @@ public class Album {
 	@Override
 	public String toString() {
 		return "Album [name=" + albumName + ", releaseDate=" + albumReleaseDate + ", songs=" + albumSong + ", genre=" + albumGenre
-				+ ", coverImg=" + albumCoverImg + ", Artist=" + Artist + "]";
+				+ ", coverImg=" + albumCoverImg + ", Artist=" + artist + "]";
 	}
 	
 	
