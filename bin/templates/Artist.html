@@ -1,14 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Artist</title>
+   <title th:text="${artist.artistName}"></title>
 </head>
 <body>
-
 <h1>Artist page</h1>
+<header>
+    <h1 th:text="${artist.artistName}"></h1>
+    <ul>
+        <li th:each="Albums : ${artist.albums}"></li>
+    </ul>
     
+</header>
+
+<main>
+    <h2>
+        record label:
+        <a th:href="|@{/artists/}${artist.artistRecordLabel}@{/artistRecordLabel}|" th:text="${artist.artistRecordLabel}"></a>
+    </h2>
+<div>
+    <ul class="albumList">
+        <li th:each="albumList : ${albums}">
+            <a th:href="|@{/album/}${album.id}|">
+                <span th:text="${album.albumName}"></span>
+            </a>
+            
+            <button class="deleteAlbum">Remove</button>
+            
+        </li>
+    </ul>
+</div>
+   
+    <span id="addAlbums" th:action="|@{/artists}/${artist.albums}/add-album-to-artist|" method="POST">
+        <label for="albumName">
+            <input type="text" name="albumName" placeholder="Album name" />
+        </label>
+        <label for="albumRecordLabel">
+            <input type="text" name="albumRecordLabel" placeholder="Album Record Label"/>
+        </label>
+        <button type="submit" value="Submit"> Add album to artist</button>
+    </span>
+   
+
+</main>
+
+<footer>
+    <small>&copy; Artists and Albums 2018</small>
+</footer>
+
+
+<!-- <script src="/js/app.js"></script>    -->
 </body>
 </html>

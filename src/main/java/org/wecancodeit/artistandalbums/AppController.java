@@ -35,7 +35,7 @@ public class AppController {
 		return "artists";
 	}
 	
-	@RequestMapping("/artists/{id}")
+	@RequestMapping("/artist/{id}")
 	public String getArtist(@PathVariable(name = "id")Long id, Model model) {
 		model.addAttribute("artist", artistRepo.findById(id));
 		return "artist";
@@ -49,7 +49,7 @@ public class AppController {
 	}
 	
 	@RequestMapping("/artists/{id}/song")
-	public String getSong(@PathVariable(name = "Song") String song, Model model) {
+	public String getSong(@PathVariable(name = "song") String song, Model model) {
 		model.addAttribute("song", songRepo.findAll());
 		return "song";
 	}

@@ -11,12 +11,10 @@ import javax.persistence.OneToMany;
 public class Artist {
 	@Id
 	@GeneratedValue
+	private long id;
 
 	private String artistName;
-	private String artistAlbum;
 	private String artistRecordLabel;
-	private String artistSong;
-	private long id;
 
 	@OneToMany(mappedBy = "artist")
 	public Collection<Album> albums;
@@ -24,8 +22,8 @@ public class Artist {
 	public Artist() {
 	}
 
-	public Artist(String name, String recordLabel) {
-		this.artistName = name;
+	public Artist(String artistName, String recordLabel) {
+		this.artistName = artistName;
 		this.artistRecordLabel = recordLabel;
 	}
 
@@ -49,16 +47,8 @@ public class Artist {
 		return artistName;
 	}
 
-	public String getArtistAlbum() {
-		return artistAlbum;
-	}
-
 	public String getArtistRecordLabel() {
 		return artistRecordLabel;
-	}
-
-	public String getArtistSong() {
-		return artistSong;
 	}
 
 }

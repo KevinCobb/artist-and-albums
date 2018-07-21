@@ -1,12 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Artists</title>
+   <title>Artists</title>
 </head>
 <body>
 <h1>Artists page</h1>
+<main>
+    <ul class="artistList">
+        <li th:each="artist : ${artists}">
+            <a
+                th:href="|@{/artist/}${artist.id}|">
+                <span th:text="${artist.artistName}"></span></a>
+            
+            <button class="deleteArtist">Remove</button>
+            
+        </li>
+    </ul>
+    <form th:action="|@{/artists/}/add-artist|" method="POST">
+        <label for="artistName">
+            <input type="text" name="artistName" placeholder="Artist Name" />
+        </label>
+        <label for="artistName">
+            <input type="text" name="artistAlbum" placeholder="Artist Album" />
+        </label>
+        <label for="artistRecordLabel">
+            <input type="text" name="RecordLabel" placeholder="Record label" />
+        </label>
+       
+        <button type="submit" value="Submit"> Add artist</button>
+    </form>
+</main>
+
+<footer>
+    <small>&copy; Artist and Albums 2018</small>
+</footer>
+
+<script src="/js/app.js"></script>
 </body>
 </html>

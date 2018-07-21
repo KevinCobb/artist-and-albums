@@ -4,8 +4,8 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface AlbumRepository extends CrudRepository<Album, Long>{
 
-	Artist findById(Long id);
+//	Album save(Album album);
 
-	Album save(Album album);
+	Artist findById(Long id);
 
 }

@@ -7,6 +7,14 @@
     <title>Album</title>
 </head>
 <body>
- <h1>Single album page</h1>   
+ <h1>Single album page</h1>  
+ 
+ 
+ <span id="artistComments" th:action="|@{/artist}/${artist.comments}/add-comment-to-artist|" method="POST">
+    <label for="">
+        <input type="text" name="artistComments" placeholder="add artist Comments" />
+    </label>
+        <button type="submit" value="Submit"> Add comment to artist</button>
+</span>artistName
 </body>
 </html>
