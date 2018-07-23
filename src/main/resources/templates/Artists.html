@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://wwww.thymeleaf.org">
 <head>
+<link rel="stylesheet" type="text/css" media="all"
+	href="/css/artists.css" th:href="@{/css/artists.css}" />
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Ubuntu" rel="stylesheet" />
    <title>Artists</title>
 </head>
 <body>
-<h1>Artists page</h1>
+<h1>Artists and Albums</h1>
 <main>
     <ul class="artistList">
         <li th:each="artist : ${artists}">
-            <a
-                th:href="|@{/artist/}${artist.id}|">
+            <a th:href="|@{/artists/}${artist.id}|">
                 <span th:text="${artist.artistName}"></span></a>
             
             <button class="deleteArtist">Remove</button>

@@ -30,23 +30,55 @@ public class ApiController {
 	AlbumCommentRepository albumCommentRepo;
 
 	@RequestMapping("/artists")
-	public Collection<Artist> getArtist() {
+	public Collection<Artist> getArtists() {
 		return (Collection<Artist>) artistRepo.findAll();
 	}
-
+	@RequestMapping("/albums")
+	public Collection<Album> getAlbumsId() {
+		return (Collection<Album>) albumRepo.findAll();
+	}
+	@RequestMapping("/songs")
+	public Collection<Song> getSongs() {
+		return (Collection<Song>) songRepo.findAll();
+	}
 	@RequestMapping("/artist/{id}/albums")
-	public Collection<Album> getAlbums(@PathVariable(name = "id") Long id) {
-		return (Collection<Album>) artistRepo.findById(id).getAlbums();
+	public Collection<Album> getAlbumId(@PathVariable(name = "albumId") Long albumId) {
+		return (Collection<Album>) artistRepo.findById(albumId).getAlbums();
 	}
 
 	// Add endpoint to handle DELETEing a comment
-	@RequestMapping(value = "/artists/{id}/comments", method = RequestMethod.DELETE)
-	public Collection<Artist> deleteComment(@PathVariable(name = "id") String name,
-			@RequestParam(value = "id") Long id) {
-		albumCommentRepo.delete(id);
-		return artistRepo.findById(id).getAlbumComments();
+//	@RequestMapping(value = "/artists/{id}/comments", method = RequestMethod.DELETE)
+//	public Collection<Artist> deleteComment(@PathVariable(name = "id") String name,
+//			@RequestParam(value = "id") Long id) {
+//		albumCommentRepo.delete(id);
+//		return artistRepo.findOne(id).getAlbumComments();
+//	}
+
+//	@RequestMapping(value = "/artists/{id}/{songId}")
+//	public Collection<Song> getSongs(@PathVariable(name = "songId")Long SongId,
+//									@PathVariable(name="id")Long id) {
+//		return albumRepo.findOne(id).getSongs();
+//	}
+//	@RequestMapping(value = "/artist/add-artist", method = RequestMethod.POST)
+//	public String addArtist(@RequestParam String artistName, @RequestParam String artistAlbum,
+//			@RequestParam String recordLabel) {
+//		if (artistRepo.findById(id) == null) {
+//			Artist artistToAdd = artistRepo.save(new Artist(artistName, artistAlbum, recordLabel, null));
+//		}
+//		return "redirect:/artists";
+//}
+//	
+//	@RequestMapping(value = "/artists/{id}/add-album-to-artist", method = RequestMethod.POST)
+//	public String addAlbum(@PathVariable(name = "id")Long id, String album , @RequestParam String AlbumName,
+//			@RequestParam String artistSong, @RequestParam String albumReleaseDate, @RequestParam String albumSong, @RequestParam albumGenre, @RequestParam albumCoverImg) {
+//		Artist artist = artistRepo.findById(id);
+//		if (artist != null) {
+//			if (albumRepo.findByName(AlbumName) == null) {
+//				Album albumToAdd = albumRepo.save(new Album(AlbumName, albumReleaseDate, albumSong, albumGenre, albumCoverImg, artist));
+//			}
+//		}
+//		return "redirect:/artists/" + album;
+
 	}
 
-//		@RequestMapping(value = "/")
 
-}

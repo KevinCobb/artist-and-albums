@@ -12,19 +12,19 @@ import javax.persistence.OneToMany;
 public class Album {
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Long albumId;
 
 	private String albumName;
 	private String albumReleaseDate;
-	private String albumSong;
+	private String albumSongList;
 	private String albumGenre;
 	private String albumCoverImg;
 
 	@OneToMany(mappedBy = "album")
-	private Collection<Song> songs;
+	public Collection<Song> songs;
 
 	@OneToMany(mappedBy = "album")
-	private Collection<AlbumComment> albumComments;
+	public Collection<AlbumComment> albumComments;
 
 	@ManyToOne
 	public Artist artist;
@@ -32,15 +32,19 @@ public class Album {
 	public Album() {
 	}
 
-	public Album(String albumName, String albumReleaseDate, String albumSongList, String albumGenre, String coverImg,
+	public Album(String albumName, String albumReleaseDate, String albumSongList, String albumGenre, String albumCoverImg,
 			Artist artist) {
 		this.albumName = albumName;
 		this.albumReleaseDate = albumReleaseDate;
-		this.albumSong = albumSongList;
+		this.albumSongList = albumSongList;
 		this.albumGenre = albumGenre;
-		this.albumCoverImg = coverImg;
+		this.albumCoverImg = albumCoverImg;
+		this.artist = artist;
 	}
 
+	public Collection<Song> getSongs() {
+		return songs;
+	}
 	public Collection<AlbumComment> getAlbumComments() {
 		return albumComments;
 	}
@@ -52,22 +56,14 @@ public class Album {
 		return albumReleaseDate;
 	}
 
-	public String getSongs() {
-		return albumSong;
+	public Long getAlbumId() {
+		return albumId;
 	}
 
-	public String getGenre() {
-		return albumGenre;
+	public String getAlbumSongList() {
+		return albumSongList;
 	}
 
-	public String getCoverImg() {
-		return albumCoverImg;
-	}
-
-	public Long getId() {
-		return id;
-	}
-	
 	public String getAlbumName() {
 		return albumName;
 	}
@@ -76,9 +72,6 @@ public class Album {
 		return albumReleaseDate;
 	}
 	
-	public String getAlbumSong() {
-		return albumSong;
-	}
 	
 	public String getAlbumGenre() {
 		return albumGenre;
@@ -94,7 +87,7 @@ public class Album {
 	}
 	@Override
 	public String toString() {
-		return "Album [name=" + albumName + ", releaseDate=" + albumReleaseDate + ", songs=" + albumSong + ", genre="
+		return "Album [name=" + albumName + ", releaseDate=" + albumReleaseDate + ", songs=" + albumSongList + ", genre="
 				+ albumGenre + ", coverImg=" + albumCoverImg + ", Artist=" + artist + "]";
 	}
 

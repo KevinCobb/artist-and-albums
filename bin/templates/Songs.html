@@ -1,19 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://wwww.thymeleaf.org">
 <head>
-    <title>Songs</title>
+    <title th:text="${songs.songName}"></title>
 </head>
 <body>
-    <h1>Songs page</h1>
-
-    <ul class="songList">
-        <li th:each="song : ${album.songs}">
-            <a 
-                th:href="|@{/artists/}${artist.albums}@{/artists/}${album.id}|"
-                th:text="${album.name}"
-            ></a>
+    <h1 th:text="|Song: ${songs.songName}"></h1>
+ <main>
+     <section class="songProps">
+            <p th:text="| Rating: ${songs.rating}|"></p>
+            <p th:text="| Lyrics: ${songs.lyrics}|"></p>
+            <p th:utext="${songs.videoUrl}"></p>
+       </section>  
+       
+        <span id="songComments" th:action="|@{/song/}/${songs.songComment}/add-comment-to-song|" method="POST"></span>
+    <label for="songcomment">
+        <input type="text" name="songComments" placeholder="add song Comments" />
+    </label>
+        <button type="submit" value="Submit"> Add comment to songs</button>
+         
+  </main>  
+ <!--   <h2 th:each="${album.songs}"th:text="$|otherRating: {song.rating}|"></h2>  <iframe width="560" height="315" src="https://www.youtube.com/embed/ypQZV03l80g" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
             
-            <button class="delete">Remove</button>
-        </li>
+            
 </body>
 </html>

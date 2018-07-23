@@ -15,16 +15,19 @@ public class Artist {
 
 	private String artistName;
 	private String artistRecordLabel;
+	private String artistImg;
 
 	@OneToMany(mappedBy = "artist")
 	public Collection<Album> albums;
+	
 
 	public Artist() {
 	}
 
-	public Artist(String artistName, String recordLabel) {
+	public Artist(String artistName, String recordLabel, String artistImg) {
 		this.artistName = artistName;
 		this.artistRecordLabel = recordLabel;
+		this.artistImg = artistImg;
 	}
 
 	public Collection<Album> getAlbums() {
@@ -35,8 +38,9 @@ public class Artist {
 		return artistRecordLabel;
 	}
 
-	public Collection<Artist> getAlbumComments() {
-		return getAlbumComments();
+
+	public String getArtistImg() {
+		return artistImg;
 	}
 
 	public Long getId() {

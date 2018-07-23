@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://wwww.thymeleaf.org">
 <head>
    <title th:text="${artist.artistName}"></title>
 </head>
@@ -7,31 +7,22 @@
 <h1>Artist page</h1>
 <header>
     <h1 th:text="${artist.artistName}"></h1>
-    <ul>
-        <li th:each="Albums : ${artist.albums}"></li>
-    </ul>
-    
 </header>
 
 <main>
+        <div class="pic">
+               <img th:src="|@{/img/}${artist.artistImg}|" width="377" height="377" alt="Image for artist" />
+        </div>
     <h2>
-        record label:
-        <a th:href="|@{/artists/}${artist.artistRecordLabel}@{/artistRecordLabel}|" th:text="${artist.artistRecordLabel}"></a>
+        <span th:text="|record label: ${artist.artistRecordLabel}|"></span>
     </h2>
-<div>
     <ul class="albumList">
-        <li th:each="albumList : ${albums}">
-            <a th:href="|@{/album/}${album.id}|">
-                <span th:text="${album.albumName}"></span>
-            </a>
-            
+        <li th:each="album : ${artist.albums}">
+            <a th:href="|@{/artists/}${artist.id}/${album.albumId}|" th:text="${album.albumName}"></a>
             <button class="deleteAlbum">Remove</button>
-            
         </li>
     </ul>
-</div>
-   
-    <span id="addAlbums" th:action="|@{/artists}/${artist.albums}/add-album-to-artist|" method="POST">
+    <div id="addAlbums" th:action="|@{/artists}/${artist.albums}/add-album-to-artist|" method="POST">
         <label for="albumName">
             <input type="text" name="albumName" placeholder="Album name" />
         </label>
@@ -39,9 +30,8 @@
             <input type="text" name="albumRecordLabel" placeholder="Album Record Label"/>
         </label>
         <button type="submit" value="Submit"> Add album to artist</button>
-    </span>
-   
-
+    </div>
+  
 </main>
 
 <footer>

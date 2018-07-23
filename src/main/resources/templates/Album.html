@@ -1,20 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://wwww.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Album</title>
+        <title th:text="${album.albumName}"></title>
 </head>
 <body>
- <h1>Single album page</h1>  
- 
- 
- <span id="artistComments" th:action="|@{/artist}/${artist.comments}/add-comment-to-artist|" method="POST">
+ <h1 th:text="|Album:   ${album.albumName}|"></h1>  
+
+ <ol class="songList">
+    <li th:each="song : ${album.songs}">
+        <a 
+            th:href="|@{/artists/}${artist.id}/${album.albumId}/${song.songId}|"
+            th:text="${song.songName}"
+        ></a>
+        
+        <button class="delete">Remove</button>
+    </li>
+</ol> 
+ 	<div class="pic">
+         <img th:src="|@{/img/}${album.albumCoverImg}" width="377" height="377" alt="Image size dimensions" />
+    </div>
+    
+    <form th:action="|@{/albums/}/add-album|" method="POST">
+        <label for="albumName">
+            <input type="text" name="albumName" placeholder="Album Name" />
+        </label>
+        <label for="release date">
+            <input type="text" name="releaseDate" placeholder="Album release date" />
+        </label>
+        <label for="albumSongList">
+            <input type="text" name="albumSongList" placeholder="Song list" />
+        </label>
+        <label for="albumGenre">
+            <input type="text" name="albumGenre" placeholder="Genre" />
+        </label>
+        <button type="submit" value="Submit"> Add album</button>
+    </form>
+ <span id="albumComments" th:action="|@{/album/}/${album.albumComments}/add-comment-to-album|" method="POST">
     <label for="">
-        <input type="text" name="artistComments" placeholder="add artist Comments" />
+        <input type="text" name="albumComments" placeholder="add album Comments" />
     </label>
-        <button type="submit" value="Submit"> Add comment to artist</button>
-</span>artistName
+        <button type="submit" value="Submit"> Add comment to album</button>
+</span>
 </body>
 </html>

@@ -1,0 +1,21 @@
+html {
+	background: url("/img/artistsBackground.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+h1{
+	color: white;
+	font-size: 5em;
+	font-family: 'Ubuntu', sans-serif;
+}
+.artistList{
+	color: white;
+	font-size: 2em;
+	font-family: 'Josefin Sans', sans-serif;
+}
+a:visited{
+	color: yellow;
+}
